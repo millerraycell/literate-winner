@@ -16,6 +16,6 @@ namespace PessoaAPI.Controllers
        [HttpGet("{id}")]
        public List<PessoaAPI.Models.Pessoa> Get(){
            return new BPessoa().RetornarPessoas();
-       }       
+       }     
    }
 }

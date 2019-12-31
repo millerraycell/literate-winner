@@ -8,5 +8,8 @@ namespace PessoaAPI.BLL
         public List<Pessoa> RetornarPessoas(){
             return new DAOPessoa().RetornarPessoas();
         }
+        public Pessoa RetornarPessoa(int id){
+            return new DAOPessoa().RetornarPessoa(id);
+        }
     }
 }

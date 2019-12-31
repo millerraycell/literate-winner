@@ -8,8 +8,8 @@ namespace PessoaAPI.DAL
 
    public class DAOPessoa{
 
+       string connString = "Host=localhost;Username=postgres;Password=86554732;Database=DotNetCoreAPI";
        public List<Pessoa> RetornarPessoas(){
-           var connString = "Host=localhost;Username=postgres;Password=86554732;Database=DotNetCoreAPI";
 
            List<Pessoa> lstPessoa = new List<Pessoa>();
 
@@ -34,6 +34,29 @@ namespace PessoaAPI.DAL
            }      
        
            return lstPessoa;
+       }
+
+       public Pessoa RetornarPessoa(int id){
+           Pessoa pessoa = new Pessoa();
+           try{
+               using (var conn = new NpgsqlConnection(connString))
+               {
+                   conn.Open();
+                   using (var cmd = new NpgsqlCommand($"SELECT * FROM pessoa WHERE id = {id}", conn))
+                   using (var reader = cmd.ExecuteReader())
+                   while (reader.Read()){
+                       pessoa.Id = (Int64)reader["id"];
+                       pessoa.CPF = (Int64)reader["cpf"];
+                       pessoa.Nome = reader.GetString(2);
+                   }
+                   conn.Close();
+               }
+           }catch(Exception ex){
+               string teste = ex.Message;
+               Console.WriteLine(teste);
+           }      
+       
+           return pessoa;
        }
    }
 }
