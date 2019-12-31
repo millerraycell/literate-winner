@@ -9,7 +9,7 @@ namespace PessoaAPI.DAL
    public class DAOPessoa{
 
        public List<Pessoa> RetornarPessoas(){
-           var connString = "Host=localhost;Username=postgres;Password=zp3;Database=DotNetCoreAPI";
+           var connString = "Host=localhost;Username=postgres;Password=86554732;Database=DotNetCoreAPI";
 
            List<Pessoa> lstPessoa = new List<Pessoa>();
 
@@ -17,7 +17,7 @@ namespace PessoaAPI.DAL
                using (var conn = new NpgsqlConnection(connString))
                {
                    conn.Open();
-                   using (var cmd = new NpgsqlCommand("SELECT id, cpf, Nome FROM \"Pessoa\"", conn))
+                   using (var cmd = new NpgsqlCommand("SELECT * FROM pessoa", conn))
                    using (var reader = cmd.ExecuteReader())
                    while (reader.Read()){
                        Pessoa pessoa = new Pessoa();
@@ -30,6 +30,7 @@ namespace PessoaAPI.DAL
                }
            }catch(Exception ex){
                string teste = ex.Message;
+               Console.WriteLine(teste);
            }      
        
            return lstPessoa;

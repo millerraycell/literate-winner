@@ -9,12 +9,13 @@ using PessoaAPI.Models;
 namespace PessoaAPI.Controllers
 {
    [Route("api/[controller]")]
-   public class ApiPessoaController : ControllerBase
+   public class ApiPessoaController : Controller
    {
        // GET api/values
+       //localhost:5001/api/apiPessoa/get
        [HttpGet("{id}")]
        public List<PessoaAPI.Models.Pessoa> Get(){
            return new BPessoa().RetornarPessoas();
-       }      
+       }       
    }
 }
